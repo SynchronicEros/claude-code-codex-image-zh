@@ -2,6 +2,22 @@
 
 讓 Claude Code 呼叫 **Codex CLI 內建的影像生成工具**產圖，原圖直接存進目前專案的 `ai_images/`。這是一個 skill，不是 Mod：裝好後對 Claude 說「幫我用 Codex 產一張圖：……」就會觸發。
 
+## 安裝
+
+**需要 Claude Code（付費方案）；Codex 免費版不能安裝。**本 skill 裝在 Claude Code 裡，再由它呼叫 Codex CLI 產圖。
+
+使用前須先完成下方「前置條件」（安裝並登入 Codex CLI）。
+
+```bash
+claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh
+```
+
+```bash
+claude plugin install codex-image@claude-code-codex-image-zh
+```
+
+安裝或更新後，**新開的 session 才會生效**。全部 Mod 與 skill 一起管理，見總目錄 [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh)。
+
 ## 前置條件（自己做，不要交給 Claude 代做）
 
 1. 安裝 Node.js（LTS 版），再安裝 Codex CLI：
@@ -33,28 +49,12 @@ Windows 上的 Claude Code 需要 Git Bash。
 - skill 規定不把真實人物的姓名、個資或照片放進提示詞；AI 生成的圖在作業、海報中使用時，請標示「AI 生成插圖」。
 - Claude 不代為登入，也不讀取 `~/.codex/auth.json`。遇到憑證錯誤時不會關沙箱或改防毒、VPN 設定，只做唯讀檢查後請你處理（排障表見 skill 內文）。
 
----
-
-**English:** A skill that lets Claude Code generate images through the Codex CLI's built-in image tool and copy the original file into `ai_images/` in the current project. Prerequisites (do these yourself): `npm install -g @openai/codex`, then `codex login`. Claude proposes the image first and waits for your go-ahead; one image per call. Each image uses your own ChatGPT quota; do not share ChatGPT accounts. On Windows, Claude Code needs Git Bash.
-
----
-
-## 安裝
-
-使用前須先完成上方「前置條件」（安裝並登入 Codex CLI）。
-
-```bash
-claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh
-```
-
-```bash
-claude plugin install codex-image@claude-code-codex-image-zh
-```
-
-安裝或更新後，**新開的 session 才會生效**。全部 Mod 與 skill 一起管理，見總目錄 [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh)。
-
 ## 授權
 
 MIT（見 [LICENSE](LICENSE)）。
 
-**Install / License (English):** Complete the prerequisites above first. `claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh`, then `claude plugin install codex-image@claude-code-codex-image-zh`; takes effect in new sessions. All mods and skills: [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh). MIT.
+---
+
+**English:** A skill that lets Claude Code generate images through the Codex CLI's built-in image tool and copy the original file into `ai_images/` in the current project. Prerequisites (do these yourself): `npm install -g @openai/codex`, then `codex login`. Claude proposes the image first and waits for your go-ahead; one image per call. Each image uses your own ChatGPT quota; do not share ChatGPT accounts. On Windows, Claude Code needs Git Bash.
+
+**Install / License (English):** Requires Claude Code (a paid plan); the free Codex tier cannot install it. Complete the prerequisites below first. `claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh`, then `claude plugin install codex-image@claude-code-codex-image-zh`; takes effect in new sessions. All mods and skills: [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh). MIT.
