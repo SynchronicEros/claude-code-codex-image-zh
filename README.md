@@ -4,13 +4,12 @@
 
 ## 安裝
 
-**需要 Claude Code（付費方案）；Codex 免費版不能安裝。** 還沒裝 Claude Code，見[官方安裝說明](https://code.claude.com/docs/zh-TW/setup)。本 skill 裝在 Claude Code 裡，再由它呼叫 Codex CLI 產圖。
+- 需要 **Claude Code（付費方案）**；Codex 免費版不能安裝（只有 Codex 的人，改照[範本 repo](https://github.com/SynchronicEros/eros-kmu-learning-example) README「只用 Codex 的人」一節）。本 skill 裝在 Claude Code 裡，再由它呼叫 Codex CLI 產圖。
+- 還沒裝 Claude Code：見[官方安裝說明](https://code.claude.com/docs/zh-TW/setup)。
+- 使用前須先完成下方「前置條件」（安裝並登入 Codex CLI）。
+- Windows 需要 Git Bash：安裝 [Git for Windows](https://git-scm.com/downloads/win) 就有（選項都用預設即可），裝完重開 Claude Code。
 
-使用前須先完成下方「前置條件」（安裝並登入 Codex CLI）。
-
-Windows 需要 Git Bash：安裝 [Git for Windows](https://git-scm.com/downloads/win) 就有（選項都用預設即可），裝完重開 Claude Code。
-
-下面兩行指令貼在**終端機**（Mac：「終端機」App；Windows：PowerShell），貼上後按 Enter；不是貼在 Claude Code 的對話框。已經在 Claude Code 對話框裡的話，改打 `/plugin marketplace add …` 與 `/plugin install …`（去掉開頭的 `claude`，改成斜線）。
+**指令貼在哪裡**：貼在**終端機**，貼上後按 Enter（Mac：按 ⌘＋空白鍵開 Spotlight，搜尋「終端機」；Windows：在開始選單搜尋「PowerShell」）。不是貼在 Claude Code 的對話框。若終端機回應 `command not found`（找不到指令），表示終端機裡還沒有 Claude Code：照上面的官方安裝說明安裝；只用桌面版的人，改用下方「對話框裡」的寫法。
 
 ```bash
 claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh
@@ -20,15 +19,33 @@ claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh
 claude plugin install codex-image@claude-code-codex-image-zh
 ```
 
+**對話框裡**（已經在 Claude Code 裡，或只用桌面版）：改打 `/plugin marketplace add SynchronicEros/claude-code-codex-image-zh`，再打 `/plugin install codex-image@claude-code-codex-image-zh`；會跳出英文選單，選第一個 **Install for you (user scope)**。
+
 安裝時若出現英文訊息「SSH not configured, cloning via HTTPS」或「userConfig options not yet set」，可以忽略（沒設定就用預設值）。
 
 裝好後要**開新的 session（一次新對話）**才會生效：終端機版先打 `/exit` 離開，再打 `claude`；桌面版開一個新對話。
 
-**總目錄與單一 repo 二擇一**：同一個 Mod 或 skill 只從一處安裝（skill 兩處都裝會出現兩份）。用 `claude plugin list` 檢查；若同時看到 `codex-image@claude-code-codex-image-zh` 與 `codex-image@claude-code-mods-zh`，移除其中一份：
+**總目錄與本 repo 二擇一**：同一個 Mod 或 skill 只從一處安裝（skill 兩處都裝會出現兩份）。用 `claude plugin list` 檢查；若同時看到 `codex-image@claude-code-codex-image-zh` 與 `codex-image@claude-code-mods-zh`，**保留總目錄那份**，移除本 repo 這份（只執行一次）：
 
 ```bash
-claude plugin uninstall codex-image@claude-code-mods-zh
+claude plugin uninstall codex-image@claude-code-codex-image-zh
 ```
+
+再用 `claude plugin list` 確認只剩一份。重複執行會出現 ✘ 與「not installed」，表示已經移除過，無害。
+
+## 更新
+
+有新版時，在終端機依你當初的安裝來源執行兩行，再開新的 session。從本 repo 裝的：
+
+```bash
+claude plugin marketplace update claude-code-codex-image-zh
+```
+
+```bash
+claude plugin update codex-image@claude-code-codex-image-zh
+```
+
+從總目錄裝的：把兩行裡的 `claude-code-codex-image-zh` 換成 `claude-code-mods-zh`。只打第二行會顯示「already at the latest version」，因為還沒先抓新的目錄。
 
 全部 Mod 與 skill 見總目錄 [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh)。
 
@@ -71,4 +88,4 @@ MIT（見 [LICENSE](LICENSE)）。
 
 **English:** A skill that lets Claude Code generate images through the Codex CLI's built-in image tool and copy the original file into `ai_images/` in the current project. Prerequisites (do these yourself): `npm install -g @openai/codex`, then `codex login`. Claude proposes the image first and waits for your go-ahead; one image per call. Each image uses your own ChatGPT quota; do not share ChatGPT accounts. On Windows, Claude Code needs Git Bash.
 
-**Install / License (English):** Requires Claude Code (a paid plan); the free Codex tier cannot install it. Complete the prerequisites below first. `claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh`, then `claude plugin install codex-image@claude-code-codex-image-zh`; takes effect in new sessions. Install from either this repo or the index, not both. All mods and skills: [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh). MIT.
+**Install / License (English):** Requires Claude Code (a paid plan); the free Codex tier cannot install it. Complete the prerequisites (前置條件) above first: `npm install -g @openai/codex`, then `codex login`. `claude plugin marketplace add SynchronicEros/claude-code-codex-image-zh`, then `claude plugin install codex-image@claude-code-codex-image-zh`; takes effect in new sessions. Install from either this repo or the index, not both (keep the index copy). To update, run `claude plugin marketplace update` for your source first, then `claude plugin update`. All mods and skills: [claude-code-mods-zh](https://github.com/SynchronicEros/claude-code-mods-zh). MIT.
