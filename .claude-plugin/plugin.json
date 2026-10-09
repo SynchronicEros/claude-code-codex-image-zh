@@ -1,0 +1,14 @@
+{
+  "name": "codex-image",
+  "version": "0.1.0",
+  "description": "經 Codex CLI 產圖：讓 Claude Code 呼叫 Codex 內建影像生成工具，原圖直接存進目前專案",
+  "author": {
+    "name": "SynchronicEros"
+  },
+  "keywords": [
+    "codex",
+    "image",
+    "skill",
+    "產圖"
+  ]
+}

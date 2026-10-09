@@ -1,0 +1,16 @@
+{
+  "name": "claude-code-codex-image-zh",
+  "owner": {
+    "name": "SynchronicEros"
+  },
+  "metadata": {
+    "description": "經 Codex CLI 產圖（skill）：讓 Claude Code 呼叫 Codex 內建影像生成工具，原圖直接存進目前專案"
+  },
+  "plugins": [
+    {
+      "name": "codex-image",
+      "source": "./",
+      "description": "經 Codex CLI 產圖（skill）：讓 Claude Code 呼叫 Codex 內建影像生成工具，原圖直接存進目前專案"
+    }
+  ]
+}
